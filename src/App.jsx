@@ -3,7 +3,7 @@ import axios from "axios";
 import BookForm from "./components/BookForm";
 import BookList from "./components/BookList";
 
-const API_URL = "https://library-backend-73m6.onrender.com";
+const API_URL = "https://library-backend-73m6.onrender.com/api/books";
 
 function App() {
   const [books, setBooks] = useState([]);
