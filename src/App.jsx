@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import Library from "./pages/Library";
 import Navbar from "./components/Navbar";
 
+
 function ProtectedRoute({ children }) {
   const { user } = useAuth();
   if (!user) return <Navigate to="/login" replace />;
