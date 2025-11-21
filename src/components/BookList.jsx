@@ -1,6 +1,7 @@
-function BookList({ books, onDelete, onEditClick }) {
-  if (books.length === 0) {
-    return <p>No books yet. Add some! 🙂</p>;
+export default function BookList({ books, onDelete, onEditClick }) {
+
+  if (!books || books.length === 0) {
+    return <p>No books yet. Add your first one!</p>;
   }
 
   return (
@@ -14,12 +15,10 @@ function BookList({ books, onDelete, onEditClick }) {
               <strong>Status:</strong> {book.status}
             </p>
           </div>
+
           <div className="book-actions">
             <button onClick={() => onEditClick(book)}>Edit</button>
-            <button
-              className="danger"
-              onClick={() => onDelete(book._id)}
-            >
+            <button className="danger" onClick={() => onDelete(book._id)}>
               Delete
             </button>
           </div>
@@ -28,5 +27,3 @@ function BookList({ books, onDelete, onEditClick }) {
     </ul>
   );
 }
-
-export default BookList;

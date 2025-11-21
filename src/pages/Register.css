@@ -1,0 +1,123 @@
+/* Background layout */
+.register-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #9333ea, #4f46e5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Card styling */
+.register-card {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  padding: 34px;
+  border-radius: 18px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Titles */
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #1f1f1f;
+}
+
+.subtitle {
+  font-size: 15px;
+  color: #6b7280;
+  margin-bottom: 25px;
+}
+
+/* Form styling */
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  text-align: left;
+}
+
+.input-group label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-top: 6px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.input-group input:focus {
+  border-color: #9333ea;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.15);
+}
+
+/* Button */
+.register-btn {
+  width: 100%;
+  padding: 12px 14px;
+  background: #9333ea;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 10px;
+  border: none;
+  margin-top: 8px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.register-btn:hover {
+  background: #7e22ce;
+}
+
+/* Error box */
+.error {
+  background: #fee2e2;
+  color: #b91c1c;
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+/* Go to login link */
+.login-text {
+  margin-top: 20px;
+  font-size: 15px;
+  color: #4b5563;
+}
+
+.login-text a {
+  color: #9333ea;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login-text a:hover {
+  text-decoration: underline;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
