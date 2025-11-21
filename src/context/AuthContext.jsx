@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 
 const API = import.meta.env.VITE_API_URL;
@@ -17,7 +17,6 @@ export default function AuthProvider({ children }) {
   );
   const [loading, setLoading] = useState(true);
 
-  // Attach token to axios headers
   useEffect(() => {
     if (token) {
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -26,7 +25,6 @@ export default function AuthProvider({ children }) {
     }
   }, [token]);
 
-  // First load: restore token & user
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     const storedUser = localStorage.getItem("user");
@@ -43,17 +41,6 @@ export default function AuthProvider({ children }) {
     setLoading(false);
   }, []);
 
-  // Validate token with backend /auth/me
-  const validate = async () => {
-    try {
-      const res = await axios.get(`${API}/auth/me`);
-      setUser(res.data.user);
-      localStorage.setItem("user", JSON.stringify(res.data.user));
-    } catch (err) {
-      logout(); // token invalid → logout
-    }
-  };
-
   // LOGIN
   const login = async (email, password) => {
     const res = await axios.post(`${API}/auth/login`, { email, password });
@@ -68,8 +55,7 @@ export default function AuthProvider({ children }) {
     return res.data;
   };
 
-  // REGISTER
-  const register = async (name, email, password) => {
+  const register = async ({ name, email, password }) => {
     const res = await axios.post(`${API}/auth/register`, {
       name,
       email,
@@ -86,7 +72,6 @@ export default function AuthProvider({ children }) {
     return res.data;
   };
 
-  // LOGOUT
   const logout = () => {
     setToken(null);
     setUser(null);
@@ -95,18 +80,10 @@ export default function AuthProvider({ children }) {
     delete axios.defaults.headers.common["Authorization"];
   };
 
-  const value = {
-    token,
-    user,
-    login,
-    register,
-    logout,
-    loading,
-    validate,
-  };
-
   return (
-    <AuthContext.Provider value={value}>
+    <AuthContext.Provider
+      value={{ token, user, loading, login, register, logout }}
+    >
       {!loading && children}
     </AuthContext.Provider>
   );
