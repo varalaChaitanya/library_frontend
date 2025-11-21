@@ -19,7 +19,7 @@ export default function Register() {
     e.preventDefault();
     try {
       setErr("");
-      await register(form);
+      await register(name, email, password);
       navigate("/");
     } catch (error) {
       setErr(error.response?.data?.message || "Registration failed");
